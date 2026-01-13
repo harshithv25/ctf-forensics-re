@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artifact Review Portal</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #111;
+      color: #eee;
+      padding: 40px;
+    }
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    pre {
+      margin-top: 20px;
+      color: #8f8;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Internal Artifact Review</h2>
+
+  <p>
+    A suspicious binary was recovered from a developer workstation.
+    It doesn't seem to do anything useful.
+  </p>
+
+  <button onclick="requestArtifact()">Request Artifact</button>
+  <button onclick="getHint()">Hint</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function requestArtifact() {
+      fetch("/artifact")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("output").innerText =
+            "Request failed.\n\n" + data;
+        });
+    }
+
+    function getHint() {
+      fetch("/hint")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("output").innerText =
+            "Hint:\n" + data.hint;
+        });
+    }
+  </script>
+
+</body>
+</html>
