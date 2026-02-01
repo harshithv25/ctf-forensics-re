@@ -1,58 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Artifact Review Portal</title>
-  <style>
-    body {
-      font-family: monospace;
-      background: #111;
-      color: #eee;
-      padding: 40px;
-    }
-    button {
-      padding: 10px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-    pre {
-      margin-top: 20px;
-      color: #8f8;
-    }
-  </style>
+    <title>Forensic Data Core</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="system-status">
+            SYSTEM_ID: FORENSICS_UNIT_4<br>
+            STATUS: AWAITING_INPUT<br>
+            USER: SHERLOCK
+        </div>
 
-  <h2>Internal Artifact Review</h2>
+        <h1>Forensic Data Core // SEGMENT 4</h1>
 
-  <p>
-    A suspicious binary was recovered from a developer workstation.
-    It doesn't seem to do anything useful.
-  </p>
+        <div class="story-block">
+            <p><strong>Artifact Detected.</strong></p>
+            <p>A fragment of code was pulled from the wreckage of the old network. It seems inert, effectively dead weight in the system. But the checksums are wrong... consistent errors that suggest intent.</p>
+            <p>It’s not broken. It’s waiting.</p>
+            <p>"Some files are not meant to be clicked," Sherlock muttered. "They are meant to be understood."</p>
+        </div>
 
-  <button onclick="requestArtifact()">Request Artifact</button>
-  <button onclick="getHint()">Hint</button>
+        <div class="module">
+            <h3>Artifact Retrieval Protocol</h3>
+            <p style="font-size: 0.8em; color: #666;">Attempt to extract the binary object for analysis.</p>
+            <button onclick="requestArtifact()">Initiate Retrieval</button>
+        </div>
 
-  <pre id="output"></pre>
+        <div class="module">
+            <h3>System Intelligence</h3>
+            <p style="font-size: 0.8em; color: #666;">Query local database for contextual clues.</p>
+            <button class="secondary" onclick="getHint()">Query Intelligence</button>
+        </div>
 
-  <script>
-    function requestArtifact() {
-      fetch("/artifact")
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById("output").innerText =
-            "Request failed.\n\n" + data;
-        });
-    }
+        <h3>System Output Stream</h3>
+        <pre id="output">READY.</pre>
 
-    function getHint() {
-      fetch("/hint")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("output").innerText =
-            "Hint:\n" + data.hint;
-        });
-    }
-  </script>
-
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
